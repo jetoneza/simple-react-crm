@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Container, Header, Button } from 'semantic-ui-react';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <Container textAlign="center">
+        <Header>App</Header>
+        <Button
+          color="blue"
+          content="Like"
+          icon="heart"
+          label={{ basic: true, color: 'blue', pointing: 'left', content: '2,048' }}
+        />
+      </Container>
     );
   }
 }
