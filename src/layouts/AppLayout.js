@@ -1,10 +1,9 @@
 import React from 'react';
 
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { Segment, Container } from 'semantic-ui-react';
 
-import App from '../components/App';
-import Login from '../components/Login';
+import Routes from '../routes';
 import HeaderMenu from '../components/HeaderMenu';
 
 export default function AppContainer() {
@@ -14,10 +13,7 @@ export default function AppContainer() {
         <HeaderMenu />
         <Segment vertical style={{ padding: '8em 0' }}>
           <Container>
-            <Switch>
-              <Route exact path="/" component={App} />
-              <Route path="/login" component={Login} />
-            </Switch>
+            <Routes />
           </Container>
         </Segment>
       </div>
