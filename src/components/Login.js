@@ -1,26 +1,62 @@
 import React from 'react';
+import Validator from 'validator';
+import { Form } from 'semantic-ui-react';
 
 class Login extends React.Component {
   state = {
-    email: '',
-    password: '',
+    data: {
+      email: '',
+      password: '',
+    },
+    errors: {},
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
 
+    const errors = this.validate(this.state.data);
+
+    this.setState({ errors });
+
+    if (Object.keys(errors).length !== 0) {
+      return;
+    }
+
     // TODO: handle submit
     this.props.history.push('/');
+  }
+
+  validate = (data) => {
+    const errors = {};
+
+    if (!data.password) {
+      errors.password = 'Please provide a password.';
+    }
+
+    if (!Validator.isEmail(data.email)) {
+      errors.email = 'Invalid email.';
+    }
+
+    return errors;
   }
 
   handleOnChange = (e) => {
     const { name, value } = e.target;
 
-    this.setState({ [name]: value });
+    this.setState({
+      data: {
+        ...this.state.data,
+        [name]: value,
+      },
+    })
+  }
+
+  renderError = (error) => {
+    return error && <span style={{ color: 'red' }}>{ error }</span>;
   }
 
   render() {
-    const { email, password } = this.state;
+    const { data, errors } = this.state;
 
     return (
       <div className="ui middle aligned center aligned grid">
@@ -30,9 +66,9 @@ class Login extends React.Component {
               Log-in to your account
             </div>
           </h2>
-          <form className="ui large form" onSubmit={this.handleSubmit}>
+          <Form onSubmit={this.handleSubmit}>
             <div className="ui stacked segment">
-              <div className="field">
+              <Form.Field error={!!errors.email}>
                 <div className="ui left icon input">
                   <i className="user icon"></i>
                   <input
@@ -40,10 +76,11 @@ class Login extends React.Component {
                     name="email"
                     placeholder="E-mail address"
                     onChange={this.handleOnChange}
-                    value={email}/>
+                    value={data.email}/>
                 </div>
-              </div>
-              <div className="field">
+                { this.renderError(errors.email) }
+              </Form.Field>
+              <Form.Field error={!!errors.password}>
                 <div className="ui left icon input">
                   <i className="lock icon"></i>
                   <input
@@ -51,12 +88,13 @@ class Login extends React.Component {
                     name="password"
                     placeholder="Password"
                     onChange={this.handleOnChange}
-                    value={password}/>
+                    value={data.password}/>
                 </div>
-              </div>
+                { this.renderError(errors.password) }
+              </Form.Field>
               <button className="ui fluid large green submit button">Login</button>
             </div>
-          </form>
+          </Form>
         </div>
       </div>
     );
