@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { Container, Menu } from 'semantic-ui-react';
 
-export default function HeaderMenu() {
+export default function NavBar() {
   return (
     <Menu
       pointing
@@ -23,3 +23,4 @@ export default function HeaderMenu() {
     </Menu>
   );
 }
+
