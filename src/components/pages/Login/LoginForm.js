@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Validator from 'validator';
+import { validateLoginForm } from '../../../utils/validators';
 import { Form } from 'semantic-ui-react';
 
 class LoginForm extends React.Component {
@@ -19,7 +19,7 @@ class LoginForm extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    const errors = this.validate(this.state.data);
+    const errors = validateLoginForm(this.state.data);
 
     this.setState({ errors });
 
@@ -28,20 +28,6 @@ class LoginForm extends React.Component {
     }
 
     this.props.onSubmit(this.state.data);
-  };
-
-  validate = (data) => {
-    const errors = {};
-
-    if (!data.password) {
-      errors.password = 'Please provide a password.';
-    }
-
-    if (!Validator.isEmail(data.email)) {
-      errors.email = 'Invalid email.';
-    }
-
-    return errors;
   };
 
   handleOnChange = (e) => {
