@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LoginForm /> test Should render login form 1`] = `
+<form
+  action={undefined}
+  className="ui form"
+  onSubmit={[Function]}
+>
+  <div
+    className="ui stacked segment"
+  >
+    <div
+      className="field"
+    >
+      <div
+        className="ui left icon input"
+      >
+        <i
+          className="user icon"
+        />
+        <input
+          name="email"
+          onChange={[Function]}
+          placeholder="E-mail address"
+          type="email"
+          value=""
+        />
+      </div>
+    </div>
+    <div
+      className="field"
+    >
+      <div
+        className="ui left icon input"
+      >
+        <i
+          className="lock icon"
+        />
+        <input
+          name="password"
+          onChange={[Function]}
+          placeholder="Password"
+          type="password"
+          value=""
+        />
+      </div>
+    </div>
+    <button
+      className="ui fluid large green submit button"
+    >
+      Login
+    </button>
+  </div>
+</form>
+`;

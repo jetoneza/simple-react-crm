@@ -42,7 +42,7 @@ class LoginForm extends React.Component {
   };
 
   renderError = (error) => {
-    return error && <span style={{ color: 'red' }}>{ error }</span>;
+    return error && <span className="error" style={{ color: 'red' }}>{ error }</span>;
   };
 
   render() {
